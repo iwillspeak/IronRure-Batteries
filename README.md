@@ -14,6 +14,12 @@ Nuget Package of Rust Regex C API.
 
 This repository contains pre-built versions of the rust regex library for Windows, Linux and macOS. You shouldn't need to add a reference to these libraries yourself, they're referenced from [`IronRure`](https://github.com/iwillspeak/IronRure). It might come in useful if you need to target a new platform though.
 
+## About the Version Number
+
+The NuGet package number for this library is a little odd. It contians the packed version number from the regex crate upstream, followed by a single version number for the library, and a build suffix based on the build ID.
+
+This should ensure that nuget package versions will incremnet if either we start trackign a more up to date build of regex, or if the package needs to make feature chagnes.
+
 ## Contributing
 
 IronRure is open source. Pull requests are welcome. See the [Contributing Guidelines][contributing] and [Code of Conduct][coc] for more information.
