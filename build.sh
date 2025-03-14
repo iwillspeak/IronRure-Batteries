@@ -4,6 +4,7 @@ set -e
 
 buildCiRunNumber=${1:-0}
 buildCiBranchSuffix=${2:-}
+buildCiBranchSuffix=$(echo "$buildCiBranchSuffix" | sed 's/[^a-zA-Z]+/-/g')
 
 # Check for the programs we need to do the build
 

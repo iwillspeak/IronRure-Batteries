@@ -42,6 +42,6 @@ BuildForRid "win-x64" "stable-x86_64" "buildx86_64.bat"
 # Set the buildCiRunNumber and buildCiSuffix variables
 $buildCiRunNumber = if ($args.Count -ge 1) { $args[0] } else { "0" }
 $buildCiSuffix = if ($args.Count -ge 2) { $args[1] } else { "" }
-
+$buildCiSuffix = $buildCiSuffix -replace '[^a-zA-Z]+', '-'
 # Pack it all up
 dotnet pack IronRure.Batteries-Windows.csproj -c Release -o bin\artifacts /p:BuildCiRunNumber=$buildCiRunNumber /p:BuildCiBranchSuffix=$buildCiSuffix
