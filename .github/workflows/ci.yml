@@ -55,12 +55,8 @@ jobs:
         if: runner.os == 'Windows'
         run: rustup toolchain install stable-i686-pc-windows-msvc
 
-      - name: Build Rust crate (rure) with cargo
-        run: cargo build --release
-        working-directory: rure/regex-capi
-
       - name: Run platform build script (build.ps1 or build.sh)
-        run: ${{ matrix.script }}
+        run: ${{ matrix.script }} ${{ github.run_number }} ${{ github.head_ref || github.ref_name }}
 
       - name: Upload NuGet package artifact
         uses: actions/upload-artifact@v4
