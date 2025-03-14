@@ -4,7 +4,7 @@ set -e
 
 buildCiRunNumber=${1:-0}
 buildCiBranchSuffix=${2:-}
-buildCiBranchSuffix=$(echo "$buildCiBranchSuffix" | sed 's/[^a-zA-Z]\+/-/g')
+buildCiBranchSuffix=$(echo "$buildCiBranchSuffix" | sed 's/[^a-zA-Z]/-/g')
 
 echo "Build number: $buildCiRunNumber"
 echo "Branch suffix: $buildCiBranchSuffix"
