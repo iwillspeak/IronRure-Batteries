@@ -2,6 +2,9 @@
 
 set -e
 
+buildCiRunNumber=${1:-0}
+buildCiBranchSuffix=${2:-}
+
 # Check for the programs we need to do the build
 
 if ! (which git && which cargo && which dotnet)>/dev/null
@@ -40,4 +43,4 @@ mkdir -p runtimes/$rid/native/
 cp -r rure/target/release/librure* runtimes/$rid/native/
 
 # Pack it all up
-dotnet pack IronRure.Batteries-$platform.csproj -c Release -o bin/artifacts /p:BuildSuffix=${1}
+dotnet pack IronRure.Batteries-$platform.csproj -c Release -o bin/artifacts /p:BuildCiRunNumber=${buildCiRunNumber} /p:BuildCiBranchSuffix=${BuildCiBranchSuffix}

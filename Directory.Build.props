@@ -1,7 +1,8 @@
 <Project>
   <PropertyGroup>
-    <BuildSuffix Condition="'$(BuildSuffix)' == ''">0</BuildSuffix>
-    <BatteriesVersion>1111.0.$(BuildSuffix)></BatteriesVersion>
+    <BuildCiRunNumber Condition="'$(BuildCiRunNumber)' == ''">0</BuildCiRunNumber>
+    <BatteriesVersion>1111.0.$(BuildCiRunNumber)></BatteriesVersion>
+    <VersionPrefix>$(BatteriesVersion)</VersionPrefix>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
   </PropertyGroup>
 </Project>
