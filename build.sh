@@ -43,4 +43,4 @@ mkdir -p runtimes/$rid/native/
 cp -r rure/target/release/librure* runtimes/$rid/native/
 
 # Pack it all up
-dotnet pack IronRure.Batteries-$platform.csproj -c Release -o bin/artifacts /p:BuildCiRunNumber=${buildCiRunNumber} /p:BuildCiBranchSuffix=${BuildCiBranchSuffix}
+dotnet pack IronRure.Batteries-$platform.csproj -c Release -o bin/artifacts /p:BuildCiRunNumber=${buildCiRunNumber} /p:BuildCiBranchSuffix=${buildCiBranchSuffix}
