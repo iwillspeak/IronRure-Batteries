@@ -11,6 +11,7 @@ permissions:
   packages: write
   checks: write          
   pull-requests: write  
+  id-token: write  # enable GitHub OIDC token issuance for this job
 
 jobs:
   build:
@@ -37,14 +38,21 @@ jobs:
         with:
           name: IronRure.Batteries-macOS.nupkg
           path: bin/artifacts/macos/
-
+    
       # Publish all NuGet packages to NuGet.org
       # Use --skip-duplicate to prevent errors if a package with the same version already exists.
       # If you retry a failed workflow, already published packages will be skipped without error.
       - name: Publish NuGet Packages to GitHub Packages
         run: dotnet nuget push bin/artifacts/**/*.nupkg --api-key ${{ secrets.GITHUB_TOKEN }} --source https://nuget.pkg.github.com/${{ github.repository_owner }}/index.json --skip-duplicate
 
+      # Get a short-lived NuGet API key
+      - name: NuGet login (OIDC → temp API key)
+        uses: NuGet/login@v1
+        id: login
+        with:
+          user: ${{ secrets.NUGET_USER }}
+          
       - name: Publish NuGet package
         if: github.event_name == 'release'
         run: |
-          dotnet nuget push bin/artifacts/**/*.nupkg --api-key "${{ secrets.NUGET_APIKEY }}" --source "https://api.nuget.org/v3/index.json" --skip-duplicate
+          dotnet nuget push bin/artifacts/**/*.nupkg --api-key "${{steps.login.outputs.NUGET_API_KEY}}" --source "https://api.nuget.org/v3/index.json" --skip-duplicate
