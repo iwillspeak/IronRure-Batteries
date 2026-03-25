@@ -22,7 +22,7 @@ This should ensure that nuget package versions will incremnet if either we start
 
 ## Contributing
 
-IronRure is open source. Pull requests are welcome. See the [Contributing Guidelines][contributing] and [Code of Conduct][coc] for more information.
+IronRure is open source. Pull requests are welcome. See the [Contributing Guidelines](CONTRIBUTING.md) and [Code of Conduct](CODE_OF_CONDUCT.md) for more information.
 
 ## Windows Gotchas
 
